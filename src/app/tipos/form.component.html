@@ -1,0 +1,53 @@
+<div class="card bg-dark text-white">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <form #tipoForm="ngForm">
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-2">Nombre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  
+                    [(ngModel)]="tipo.descripcion" name="nombre"  #descripcion="ngModel"
+                  
+                    />
+            <!--        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre.errors?.['required']">
+                            Nombre es requerido
+                        </div>
+                         <div *ngIf="nombre.errors?.['minlength']">
+                            Nombre debe tener al menos 4 caracteres
+                        </div>
+                    </div> -->
+                </div>
+                
+            </div>
+
+            <div class="row  mb-3">
+                <label class="col-form-label col-sm-2">Precio</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  
+                    [(ngModel)]="tipo.precio" name="precio"  
+                    #precio="ngModel"
+                    />
+         <!--           <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email.errors?.['required']">
+                            Email es requerido
+                        </div>
+                        <div *ngIf="email.errors?.['email']">
+                            El email debe cumplir el formato
+                        </div>
+                    </div> -->
+                </div>
+                
+            </div>
+
+
+            <div class="row  mb-4">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" (click)="create()" *ngIf="!tipo.id"  >Crear</button>
+                    <button class="btn btn-primary" (click)="updateTipo()" *ngIf="tipo.id">Editar</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</div>

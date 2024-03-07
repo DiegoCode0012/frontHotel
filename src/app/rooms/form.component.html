@@ -1,0 +1,45 @@
+<div class="card bg-dark text-white">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <form #tipoForm="ngForm">
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-2">Numero</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  
+                    [(ngModel)]="room.numero" name="numero"  #descripcion="ngModel"
+                  
+                    />
+            <!--        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre.errors?.['required']">
+                            Nombre es requerido
+                        </div>
+                         <div *ngIf="nombre.errors?.['minlength']">
+                            Nombre debe tener al menos 4 caracteres
+                        </div>
+                    </div> -->
+                </div>
+
+                
+            </div>
+            <div class="row  mb-3">
+                <select [compareWith]="checkTipo" class="form-control" [(ngModel)]="room.tipo" name="tipo" >
+                    <option [ngValue]="undefined">--- seleccionar una habitación ---</option>
+                    <option *ngFor="let tipo of listTipos" [ngValue]="tipo">
+                      {{ tipo.descripcion }}
+                    </option>
+                  </select>
+                
+            </div>
+            
+
+
+            <div class="row  mb-4">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" (click)="create()" *ngIf="!room.id"  >Crear</button>
+                    <button class="btn btn-primary" (click)="updateTipo()" *ngIf="room.id">Editar</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</div>
