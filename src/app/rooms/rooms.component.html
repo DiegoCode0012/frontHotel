@@ -5,8 +5,9 @@
                 <th>Numero</th>
                 <th>Disponible</th>
                 <th>Tipo</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Precio</th>
+                <th *ngIf="isAdmin">Editar</th>
+                <th *ngIf="isAdmin">Eliminar</th>
             </tr>
         </thead>
         <tbody> 
@@ -15,17 +16,17 @@
                 <td>{{rooms.numero}}</td>
                 <td [ngStyle]="{'color': rooms.disponible? 'blue' : 'red'}">{{rooms.disponible}}</td>
                 <td>{{rooms.tipo.descripcion}}</td>
-
-                <td>
-                    <button (click)="cargarRoom(rooms.id)" class="btn btn-outline-warning"
+                <td>{{rooms.tipo.precio}}</td>
+                <td *ngIf="isAdmin">
+                    <button  (click)="cargarRoom(rooms.id)" class="btn btn-outline-warning"
                     data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="far fa-edit"></i>
                         Modificar    
                      </button>
                     </td>
-                  <td>
+                  <td *ngIf="isAdmin">
                     
-                    <button class="btn btn-outline-danger" (click)="delete(rooms)" >
+                    <button  class="btn btn-outline-danger" (click)="delete(rooms)" >
                         <i class="fa-sharp fa-regular fa-circle-xmark"></i>
                         Eliminar
                     </button>
@@ -34,7 +35,7 @@
         </tbody>
     </table>
 
-<button  class="btn btn-outline-success "  data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button  *ngIf="isAdmin" class="btn btn-outline-success "  data-bs-toggle="modal" data-bs-target="#exampleModal">
     AGREGAR
 </button>
 
@@ -56,7 +57,7 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Numero</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" [(ngModel)]="room.numero" name="name">
+                      <input type="text" class="form-control" [(ngModel)]="room.numero" name="numero">
                     </div>
                 </div>
    

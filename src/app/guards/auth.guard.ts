@@ -1,19 +1,19 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateChildFn, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { TokenService } from '../service/token.service';
 import { AuthService } from '../service/auth.service';
 
-export const authGuard: CanActivateFn = (route, state) => {
+//PROTEGER LAS RUTAS URL
+ export const authGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:RouterStateSnapshot) => {
   const token=inject(TokenService);
-  const x = inject(Router);
-  if(token.isLogged() && token.isAdmin()){ // si esta logueado y si el token tiene rol admin, me permite 
-    return true
-  }else{
-    x.navigate(['/']);
+  const router = inject(Router);
+  if(token.isLogged()){ // si esta logueado y si el token tiene rol admin, me permite     
+    return true;
+  }else{ 
+    router.navigate(['/login']);
     return false;
   }
- 
-    
 };
+
 
 

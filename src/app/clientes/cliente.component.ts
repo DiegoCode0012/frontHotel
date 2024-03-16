@@ -3,6 +3,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-cliente',
@@ -12,9 +13,11 @@ export class ClienteComponent {
   cliente:Cliente=new Cliente();
   clientesArreglo:Cliente[];
   public errores :string[];
-  
-  constructor(private clienteService:ClienteService,private activatedRoute:ActivatedRoute, private router:Router){
+  isAdmin=false;
+  constructor(private tokenService:TokenService,private clienteService:ClienteService,private activatedRoute:ActivatedRoute, private router:Router){
     this.getAll();
+    this.isAdmin = this.tokenService.isAdmin();
+
   }
   
   getAll(){

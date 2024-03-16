@@ -3,6 +3,7 @@ import { TipoService } from './tipo.service';
 import { Tipo } from './tipo';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-tipo',
@@ -12,9 +13,12 @@ export class TipoComponent {
   tipo:Tipo=new Tipo();
 tiposArreglo:Tipo[];
 public errores :string[];
-
-constructor(private tiposervice:TipoService,private activatedRoute:ActivatedRoute, private router:Router){
+isAdmin=false;
+constructor(private tiposervice:TipoService,private activatedRoute:ActivatedRoute, private router:Router
+  ,private tokenService:TokenService){
   this.getAll();
+  this.isAdmin = this.tokenService.isAdmin();
+
 }
 
 getAll(){
@@ -57,7 +61,7 @@ updateTipo():void{
     this.resetForm();
 
   }, err=>{
-    this.errores=err.error.errors
+    this.errores=err.error.errors;
     console.error(err.status);
   }
   )

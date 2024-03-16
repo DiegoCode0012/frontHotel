@@ -14,6 +14,8 @@ export class RoomService {
   
   constructor(private httpClient:HttpClient,private router:Router) { 
   }
+
+  
   getAll():Observable<Room[]>{
     return this.httpClient.get<Room[]>(this.urlEndPoint).pipe(
        map(x=>{ //lista

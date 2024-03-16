@@ -15,6 +15,7 @@ import { User } from '../users/user';
 import { AuthService } from '../service/auth.service';
 import { Cliente } from '../clientes/cliente';
 import { ClienteService } from '../clientes/cliente.service';
+import { TokenService } from '../service/token.service';
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -31,14 +32,17 @@ listClientesSinReserva:Cliente[];
   reserva:Reserva=new Reserva();
   minDateEnd: Date;
 maxDateEnd: Date;
-
 minDateStart: Date;
 maxDateStart: Date;
+isAdmin=false;
   constructor(private reservaservice:ReservaService, 
     private roomservice:RoomService,
     private tipoService:TipoService,
     private clienteService:ClienteService,
-    private router:Router,private activatedRoute:ActivatedRoute){
+    private router:Router,private activatedRoute:ActivatedRoute,
+    private tokenService:TokenService){
+      this.isAdmin = this.tokenService.isAdmin();
+
   }
 
   ngOnInit(): void {

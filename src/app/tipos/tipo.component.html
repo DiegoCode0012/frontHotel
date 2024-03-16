@@ -4,8 +4,8 @@
                 <th>ID</th>
                 <th>Descripción</th>
                 <th>Precio</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th *ngIf="isAdmin">Editar</th>
+                <th *ngIf="isAdmin">Eliminar</th>
             </tr>
         </thead>
         <tbody> 
@@ -13,7 +13,7 @@
                 <td>{{tipos.id}}</td>
                 <td>{{tipos.descripcion}}</td>
                 <td>{{tipos.precio}}</td>
-                <td>
+                <td *ngIf="isAdmin">
                     <button   class="btn btn-outline-warning"
                     data-bs-toggle="modal" data-bs-target="#exampleModal"    
                     (click)="cargarTipo(tipos.id)">
@@ -22,7 +22,7 @@
                         Modificar    
                     </button>
                   </td>
-                <td>
+                <td *ngIf="isAdmin" >
                     <button (click)="delete(tipos)"  class="btn btn-outline-danger "  >
                         <i class="fa-sharp fa-regular fa-circle-xmark"></i>
                         Eliminar
@@ -32,7 +32,7 @@
         </tbody>
     </table>
 
-    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button *ngIf="isAdmin" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
         AGREGAR
         </button>
 

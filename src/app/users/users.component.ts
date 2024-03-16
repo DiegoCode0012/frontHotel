@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import Swal from 'sweetalert2';
+import { TokenService } from '../service/token.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -14,11 +15,14 @@ import Swal from 'sweetalert2';
 export class UsersComponent {
   public errores :string[];
 user:User=new User();
+isAdmin=false;
+
   //formReactive:FormGroup= new FormGroup({});
  //modalDetalle:boolean=false;
 listUser:User []=[];
 isUpdate: boolean =false;
-  constructor(private uService:AuthService,private activatedRoute:ActivatedRoute, private router:Router){
+  constructor(private tokenService:TokenService,private uService:AuthService,private activatedRoute:ActivatedRoute, private router:Router){
+    this.isAdmin = this.tokenService.isAdmin();
   }
 ngOnInit(): void{
 this.listar();

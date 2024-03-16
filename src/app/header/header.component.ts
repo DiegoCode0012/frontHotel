@@ -5,8 +5,8 @@ import { TokenService } from "../service/token.service";
     templateUrl:`./header.component.html`
 })
 //aqui se definen las palabras claves que se puede usar en el app.component.html
-export class HeaderComponent {
-    isLogged = false;
+export class HeaderComponent{
+    isLogged=false;
     username:string;
    // isAdmin = false;
   

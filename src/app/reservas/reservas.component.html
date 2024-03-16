@@ -5,7 +5,8 @@
             <th>Out</th>
             <th>Estado</th>
             <th>Habitacion</th>
-            <th>Eliminar</th>
+            <th>Cliente</th>
+            <th *ngIf="isAdmin">Eliminar</th>
             <th>Dowloand PDF</th>
           </tr>
         </thead>
@@ -15,6 +16,7 @@
             <td>{{x.diaEnd |  date:"MMM dd, yyyy 'a las' hh:mm a"}}</td>
             <td>{{x.estado}}</td>
             <td>{{x.habitacion.numero}}</td>
+            <td>{{x.cliente.name}}</td>
 <!--
             <td>
               <button (click)="delete(x)"class="btn btn-outline-primary"  >
@@ -22,14 +24,14 @@
                 Ver
               </button>
             </td> -->
-            <td>
+            <td *ngIf="isAdmin">
               <button (click)="delete(x)"class="btn btn-outline-danger"  >
                 <i class="fa-sharp fa-regular fa-circle-xmark"></i>  
                 Eliminar
               </button>
             </td>
             <td>
-              <button (click)="dowloand(x)"  class="btn btn-outline-secondary" >
+              <button (click)="dowloand(x)"  class="btn btn-outline-primary" >
                 <i class="fa-solid fa-download"></i>
                  PDF
             </button>

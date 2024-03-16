@@ -42,7 +42,7 @@ export class TipoService {
 
 
   update(tipo:Tipo):Observable<any>{
-    return this.httpClient.put<any>(`${this.urlEndPoint}/${tipo.id}`,tipo).pipe(
+    return this.httpClient.put<any>(this.urlEndPoint.concat('/'+tipo.id),tipo).pipe(
       catchError(e=>{
         if(e.status=400){
           return throwError(()=>e);

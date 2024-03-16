@@ -6,15 +6,11 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
 
-  loginUsuario: LoginUsuario;
-  nombreUsuario: string;
-  password: string;
-
+  loginUsuario: LoginUsuario = new LoginUsuario();
   errMsj: string;
 
   constructor(
@@ -26,19 +22,17 @@ export class LoginComponent {
   ngOnInit() {
   }
 
+
   onLogin(): void {
-    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
     this.authService.login(this.loginUsuario).subscribe(
       data => {
         this.tokenService.setToken(data.token);
         console.log( this.tokenService.getToken());
-    //   this.router.navigate(['/']);
        window.location.href="/";
-        this.errMsj==null;
       },
       err => {
-        this.errMsj = err.error.message;
-       console.log(err);
+        this.errMsj = err.error.errorMessage;
+       console.log(err.error.errorMessage);
       }
     );
   }

@@ -42,15 +42,26 @@ export class TokenService {
   }
 
   public isAdmin(): boolean {
-    if (!this.isLogged()) {
-      return false;
-    }
+
     const token = this.getToken(); //hacemos el STRING DEL TOKEN EN UN ARREGLO CONFORMADO POR LOS INDICES 0,1,2
     const payload = token.split('.')[1];
     const payloadDecoded = atob(payload);
     const values = JSON.parse(payloadDecoded);
     const roles = values.roles; //ESTE ES UN ARREGLO roles:[ "ROLE_ADMIN",ROLE_USER]
     if (roles.indexOf('ROLE_ADMIN') < 0) {
+      return false;
+    }
+    return true;
+  }
+
+  public isUser(): boolean {
+
+    const token = this.getToken(); //hacemos el STRING DEL TOKEN EN UN ARREGLO CONFORMADO POR LOS INDICES 0,1,2
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles; //ESTE ES UN ARREGLO roles:[ "ROLE_ADMIN",ROLE_USER]
+    if (roles.indexOf('ROLE_USER') < 0) {
       return false;
     }
     return true;

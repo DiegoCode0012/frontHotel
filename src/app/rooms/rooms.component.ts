@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TipoService } from '../tipos/tipo.service';
 import { Tipo } from '../tipos/tipo';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-rooms',
@@ -15,11 +16,15 @@ listTipos: Tipo[];
 ListRooms:Room[];
 public errores :string[];
 room:Room=new Room();
+isAdmin=false;
   constructor(private roomservice:RoomService,
     private tipoService:TipoService,
-    private activatedRoute:ActivatedRoute, private router:Router){
+    private activatedRoute:ActivatedRoute, 
+    private tokenService: TokenService
+    ,private router:Router){
     this.getAll();
     this.listarTypes();
+    this.isAdmin = this.tokenService.isAdmin();
 
   }
   getAll(){

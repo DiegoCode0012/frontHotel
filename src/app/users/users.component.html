@@ -5,7 +5,7 @@
             <th>Nombre</th>
             <th>Username</th>
             <th>Email</th>
-            <th>Eliminar</th>
+            <th *ngIf="isAdmin">Eliminar</th>
         </tr>
     </thead>
     <tbody> 
@@ -14,7 +14,7 @@
             <td>{{usuarios.nombre}}</td>
             <td>{{usuarios.username}}</td>
             <td>{{usuarios.email}}</td>
-              <td>
+              <td *ngIf="isAdmin">
                 <button  (click)="delete(usuarios)"  class="btn btn-outline-danger">
                   <i class="fa-sharp fa-regular fa-circle-xmark"></i>
                   Eliminar
